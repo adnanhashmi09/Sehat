@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,600,700&display=swap" rel="stylesheet">
+    <title>Sehat</title>
+    <link rel="shortcut icon" href="/IMAGES/logo-small.png" type="image/png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+ 
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <link rel="stylesheet" href="CSS/style.min.css">
+    <link rel="stylesheet" href="CSS/queries.min.css">
+</head>
+<body onload="fetchStats()">
+    <nav>
+        <div class="logo-cont">
+            <img src="/IMAGES/logo.png" alt="logo">
+        </div>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/news.html">News</a></li>
+            <li ><a class="download" download href="/app-debug.apk">Download the App</a></li>
+            <div class="toggle-btn">
+                <ion-icon name="moon"></ion-icon>
+                <ion-icon name="sunny"></ion-icon>
+                <div class="circle toggle"></div>
+            </div>
+        </ul>
+    </nav>
+    <canvas></canvas>
+    <div class="heading-box">
+        <img class="head-virus" src="IMAGES/coronanew.svg" alt="">
+        <h1 class="heading"> <img class="err" src="/IMAGES/err.png" alt=""> COVID-19</h1>
+    </div>
+    <section class="info-section">
+        <div class="info-contain clearfix">
+            <div class="info" data-type="total_cases">
+                <h3>Total Cases</h3>
+                <h2></h2>
+            </div>
+            <div class="info" data-type="total_recovered">
+                <h3>Recovered</h3>
+                <h2></h2>
+            </div>
+            <div class="info" data-type="total_deaths">
+                <h3>Deaths</h3>
+                <h2></h2>
+            </div>
+            <div class="info" data-type="active_cases">
+                <h3>Active Cases</h3>
+                <h2></h2>
+            </div>
+        </div>
+    </section>
+    <section class="stats">
+        
+        <div class="container">
+            <div class="left-cont">
+                <div class="row heading">
+                    <div class="row-cell"><h4 data-field="country">Country<ion-icon data-sort="country_name" name="swap-vertical-outline"></ion-icon></h4></div>
+                    <div class="row-cell"><h4 data-field="total">Total Cases<ion-icon data-sort="cases" name="swap-vertical-outline"></ion-icon></h4></div>
+                    <div class="row-cell"><h4 data-field="recovered">Recovered<ion-icon data-sort="total_recovered" name="swap-vertical-outline"></ion-icon></h4></div>
+                    <div class="row-cell"><h4 data-field="active">Active Cases<ion-icon data-sort="active_cases" name="swap-vertical-outline"></ion-icon></h4></div>
+                    <div class="row-cell"><h4 data-field="deaths">Deaths<ion-icon data-sort="deaths" name="swap-vertical-outline"></ion-icon></h4></div>
+                </div>
+                <div class="table">
+                   <!-- <div class="row values">
+                        <div class="row-cell"><h5 data-field="country"></h5></div>
+                        <div class="row-cell"><h5 data-field="total"></h5></div>
+                        <div class="row-cell"><h5 data-field="recovered"></h5></div>
+                        <div class="row-cell"><h5 data-field="active"></h5></div>
+                        <div class="row-cell"><h5 data-field="deaths"></h5></div>
+                   </div> -->
+                </div>
+            </div>
+            <div class="map-graph">
+                <div class="global">
+                    <div class="settings-strip">
+                        <h3 class="graph-heading">Global History</h3>
+                        <span>Logarithmic</span>
+                        <div class="toggle-btn-log">
+                            <div class="circle-log"></div>
+                        </div>
+                    </div>
+                    <div class="chart" id="global"></div>
+                </div>
+                <div class="countryWise">
+                    <div class="settings-strip">
+                        <h3 class="graph-heading">Country History</h3>
+                        <span>Logarithmic</span>
+                        <div class="toggle-btn-log">
+                            <div class="circle-log"></div>
+                        </div>
+                    </div>
+                    <div class="chart" id="country">
+                        <div class="statsC">
+                            <h3 data-graph="country">India</h3>
+                            <p class="error">Currently Unavailable</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="map"  id="map">
+            <div class="errBox">
+                <h3>Server Error</h3>
+                <p>Unable to update data<br>Please check your internet connection or try again later</p>
+            </div>
+            <div class="legendBtn"><ion-icon name="list"></ion-icon></div>
+            <div class="legend_info_box">
+                <h3 class="legend_heading">Confirmed Cases</h3>
+                <div class="lists">
+                    <div class="items">
+                        <div class="marker" data-color="red"></div>
+                        <h4 class="marker-head">1,00,000 +</h4>
+                    </div>
+                    <div class="items">
+                        <div class="marker" data-color="orange" ></div>
+                        <h4 class="marker-head">25,000 - 1,00,000</h4>
+                    </div>
+                    <div class="items">
+                        <div class="marker" data-color="yellow"></div>
+                        <h4 class="marker-head">8,000 - 25,000</h4>
+                    </div>
+                    <div class="items">
+                        <div class="marker" data-color="pink"></div>
+                        <h4 class="marker-head">0 - 8,000</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="marker_info hide">
+                <h4 class="marker_info_heading "><ion-icon class="close-btn" name="close"></ion-icon></h4>
+                <div class="marker_info_body">
+                    <h5 class="marker_info_body-item"></h5>
+                    <h5 class="marker_info_body-item"></h5>
+                    <h5 class="marker_info_body-item"></h5>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <h3 id="text"class="footer_text"></h3>
+    </footer>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="JS/canvas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typeit@7.X.X/dist/typeit.min.js"></script>    <script src="JS/app.js"></script>
+    <script>
+        new TypeIt("#text",{
+            speed:70,
+            loop:true
+        })
+        .type(`&copy; 2020 Sehat. All rights reserved.`)
+        .pause(3000)
+        .delete()
+        .type(`Developed By Adnan Hashmi.`)
+        .pause(3000)
+        .delete()
+        .type(`Designed By Ishaan Das.`)
+        .pause(3000)
+        .delete()
+        .go()
+
+
+    </script>
+</body>
+</html>

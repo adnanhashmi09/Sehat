@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,600,700&display=swap" rel="stylesheet">
+    <title>Sehat | News</title>
+    <link rel="shortcut icon" href="/IMAGES/logo-small.png" type="image/png">
+    <link rel="stylesheet" href="/CSS/style.min.css">
+    <link rel="stylesheet" href="/CSS/queries.min.css">
+</head>
+<body onload="getNews()">
+    <!-- NAV BAR -->
+    <nav>
+        <div class="logo-cont">
+            <img src="/IMAGES/logo.png" alt="logo">
+        </div>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/news.html">News</a></li>
+            <li ><a class="download" href="/news.html">Download the App</a></li>
+            <div class="toggle-btn">
+                <ion-icon name="moon"></ion-icon>
+                <ion-icon name="sunny"></ion-icon>
+                <div class="circle toggle"></div>
+            </div>
+        </ul>
+    </nav>
+    <!-- HERO SECTION -> POPULAR NEWS -->
+    <section class="hero-news">
+        <div class="hero-news-cont">
+            <a target="blank" href="" class="hero-left popular">
+                <img src="" alt="">
+                <div class="hero-text-box">
+                    <div class="source-box-cont">
+                        <h3 class="source-box"></h3>
+                    </div>
+                    <h1 data-size="large" class="title"></h1>
+                    <p class="credits"></p>
+                </div>
+            </a>
+            <div class="hero-right">
+                <a target="blank" href="" class="hero-right__half popular">
+                    <img src="" alt="">
+                    <div class="hero-text-box">
+                        <div class="source-box-cont">
+                            <h3 class="source-box"></h3>
+                        </div>
+                        <h1 data-size="medium" class="title"></h1>
+                        
+                    </div>
+                </a>
+                <div class="hero-right__half">
+                    <a target="blank" href="" class="hero-right--small popular">
+                        <img src="" alt="">
+                        <div class="hero-text-box">
+                            <div class="source-box-cont">
+                                <h3 class="source-box"></h3>
+                            </div>
+                            <h1 data-size="small" class="title"></h1>
+                        </div>
+                    </a>
+                    <a target="blank" href="" class="hero-right--small popular">
+                        <img src="" alt="">
+                        <div class="hero-text-box">
+                            <div class="source-box-cont">
+                                <h3 class="source-box"></h3>
+                            </div>
+                            <h1 data-size="small" class="title"></h1>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="news-cards">
+        <h1 class="news-cards-heading">Latest News</h1>
+        <div class="news-cards-container">
+            <!-- <a href="" class="news-card">
+                <div class="news-card-image-box">
+                    <img src="" alt="image">
+                </div>
+                <div class="source"></div>
+                <div class="news-card-text-box">
+                    <p class="author"></p>
+                    <p class="date"></p>
+                    <h2 class="title"></h2>
+                    <p class="description"></p>
+                </div>
+            </a> -->
+        </div>
+        <img class="loader" src="/IMAGES/loader.gif" alt="">
+    </section>
+    <footer class="hidden">
+        <h3 id="text"class="footer_text"></h3>
+    </footer>
+    
+
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="/JS/app.js"></script>
+    <script>
+        document.querySelector(".circle").addEventListener("click", () => {
+        document.querySelector(".circle").classList.toggle("toggle");
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/typeit@7.X.X/dist/typeit.min.js"></script>
+    <script>
+        new TypeIt("#text",{
+            speed:70,
+            loop:true
+        })
+        .type(`&copy; 2020 Sehat. All rights reserved.`)
+        .pause(3000)
+        .delete()
+        .type(`Developed By Adnan Hashmi.`)
+        .pause(3000)
+        .delete()
+        .type(`Designed By Ishaan Das.`)
+        .pause(3000)
+        .delete()
+        .go()
+
+    </script>
+
+    
+</body>
+</html>
